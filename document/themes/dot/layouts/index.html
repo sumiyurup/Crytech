@@ -1,0 +1,63 @@
+{{ define "main" }}
+
+  {{ "<!-- topics -->" | safeHTML }}
+  <section class="section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 text-center">
+          <h2 class="section-title">{{ i18n "topics_title" | safeHTML }}</h2>
+        </div>
+        {{ "<!-- topic-item -->" | safeHTML }}
+        
+        <div class="col-lg-4 col-sm-6 mb-4">
+          <a  class="px-4 py-5 bg-white shadow text-center d-block match-height">
+            <i class="ti-search icon text-primary d-block mb-4"></i>
+            <h3 class="mb-3 mt-0">RESEARCH</h3>
+            <p class="mb-0">Mit DYOR kannst du deine eigene Research zu Projekten im Blockchain Space machen.</p>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6 mb-4">
+          <a  class="px-4 py-5 bg-white shadow text-center d-block match-height">
+            <i class="ti-write icon text-primary d-block mb-4"></i>
+            <h3 class="mb-3 mt-0">NEWS FEED</h3>
+            <p class="mb-0">Unsere News Feed zeigt dir aktuelle Twitter-Posts aus sicheren Quellen.</p>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6 mb-4">
+          <a  class="px-4 py-5 bg-white shadow text-center d-block match-height">
+            <i class="ti-star icon text-primary d-block mb-4"></i>
+            <h3 class="mb-3 mt-0">REVIEWS (soon)</h3>
+            <p class="mb-0">Ihr könnt bald Community Bewertungen der Projekte sehen und selber abgeben.</p>
+          </a>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+  {{ "<!-- /topics -->" | safeHTML }}
+
+  {{ if .Site.Params.cta.enable }}
+  {{ with .Site.Params.cta }}
+  {{ "<!-- call to action -->" | safeHTML }}
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="section px-3 bg-white shadow text-center">
+          <h2 class="mb-4">{{ .title | markdownify }}</h2>
+          <p class="mb-4">{{ .content | markdownify }}</p>
+          {{ if .button.enable }}
+          {{ with .button }}
+          <a href="{{ .link | relLangURL }}" class="btn btn-primary">{{ .label }}</a>
+          {{ end }}
+          {{ end }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {{ "<!-- /call to action -->" | safeHTML }}
+  {{ end }}
+  {{ end }}
+
+{{ end }}
