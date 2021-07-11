@@ -45,7 +45,7 @@ function searchData() {
             let val = Data[index];
             let value = val.category + ' | ' + val.name + ' | ' + val.title;
             if (value.toLowerCase().includes(text.toLowerCase()) && noOfResults < 8) {
-                div.innerHTML += `<div class="result" id='${index}' onclick='send(this.id)'>${value}</div><hr>`;
+                div.innerHTML += `<div style="cursor: pointer;" class="result" id='${index}' onclick='send(this.id)'>${value}</div><hr>`;
                 noOfResults++;
             } else if (noOfResults == 8) {
                 break;
