@@ -5,16 +5,16 @@
 			<h1 class="text-white mb-3">{{ .Site.Params.banner.title | markdownify }}</h1>
 			<p class="text-white mb-4">{{ .Site.Params.banner.subtitle | markdownify }}</p>
 			<div class="position-relative form-wrapper">
-				<input id="search"  type="text" name="search" class="form-control" placeholder="{{ .Site.Params.banner.placeholder }}">
-				<i class="ti-search search-icon" type="submit" value="go" id="submit" onclick="searchData()"></i>
+			    <input id="search"  type="text" name="search" class="form-control" placeholder="{{ .Site.Params.banner.placeholder }}">
+			    <input type="submit" value="go" id="submit" onclick="searchData()" style="display: none;">
+                <i class="ti-search search-icon" type="submit" value="go" id="submit" onclick="searchData()"></i>
 			</div>
-			
+            <ul class="list-group myList" id="div" style="background-color: white;" ></ul> 
             
-            <ul class="list-group myList" id="div" style="background-color: white;" target="_blank"></ul>
-                
-            <form action="/profile.html" method="get" id="form">
-            <input type="text" name="index" id="number"  style="display: none;">
-            </form>	
+            <div id="div"></div>
+            <form action="/search" target="_blank" method="get" id="form">
+                <input type="text" name="index" id="number"  style="display: none;">
+            </form>
 		</div>
 	</div>
 </div>
@@ -22,7 +22,7 @@
 
 
 <script>
-	console.log("hello")
+console.log("hello")
 let Data = '';
 let srch = document.getElementById('search');
 let div = document.getElementById("div")
@@ -38,34 +38,30 @@ fetch('/data/jsonData.json')
 
 function searchData() {
     let text = srch.value;
-    let noOfResults = 0;
+    let noOfResults = 0
     div.innerHTML = "";
-    for (let index = 0; index < Data.length; index++) {
-        let val = Data[index];
-        let value = val.category + ' | ' + val.name + ' | ' + val.title;
-        if (value.toLowerCase().includes(text.toLowerCase()) && noOfResults < 30) {
-            div.innerHTML += `<div class="result" id='${index}' onclick='showProfile(this.id)'>${value}</div><hr>`;
-            noOfResults++;
-        } else if (noOfResults == 30) {
-            break;
+    if (text != '') {
+        for (let index = 0; index < Data.length; index++) {
+            let val = Data[index];
+            let value = val.category + ' | ' + val.name + ' | ' + val.title;
+            if (value.toLowerCase().includes(text.toLowerCase()) && noOfResults < 8) {
+                div.innerHTML += `<div class="result" id='${index}' onclick='send(this.id)'>${value}</div><hr>`;
+                noOfResults++;
+            } else if (noOfResults == 8) {
+                break;
+            }
         }
     }
 
 }
-
-function showProfile(index) {
+function send(index) {
     div.innerHTML = '';
-    let user = Data[index];
-    let ul = document.getElementById('user');
-    ul.innerHTML = '';
-    for (const key in user) {
-        if (Object.hasOwnProperty.call(user, key)) {
-            const value = user[key];
-            ul.innerHTML += ` <div class="list-group-item"><b>${key}</b>: | ${value}</div>`;
-        }
-    }
+    srch.value='';
+    let input = document.getElementById('number');
+    let form = document.getElementById('form');
+    input.value = index;
+    form.submit();
 }
-
 
 
 </script>

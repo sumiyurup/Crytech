@@ -44,24 +44,24 @@ contact_form_action = "https://formspree.io/f/mwkankrk" #
 
 ############################## social links ##############################
 [[params.social]]
-icon = "ti-facebook" # themify icon pack : https://themify.me/themify-icons
-name = "Facebook"
-link = "#"
-
-[[params.social]]
 icon = "ti-twitter-alt" # themify icon pack : https://themify.me/themify-icons
 name = "Twitter"
-link = "#"
+link = "https://twitter.com/crytech_berlin?lang=de"
+
+[[params.social]]
+icon = "ti-instagram" # themify icon pack : https://themify.me/themify-icons
+name = "Instagram"
+link = "https://twitter.com/crytech_berlin?lang=de"
   
 [[params.social]]
-icon = "ti-github" # themify icon pack : https://themify.me/themify-icons
-name = "Github"
-link = "#"
+icon = "ti-youtube" # themify icon pack : https://themify.me/themify-icons
+name = "Youtube"
+link = "https://www.youtube.com/channel/UCPOV2BEYrOEfrwwlrUPa_ng"
   
 [[params.social]]
-icon = "ti-linkedin" # themify icon pack : https://themify.me/themify-icons
-name = "Linkedin"
-link = "#"
+icon = "ti-facebook" # themify icon pack : https://themify.me/themify-icons
+name = "Facebook"
+link = "https://facebook.com/crytech.berlin/"
 
 ################################ English Language ######################
 [Languages.en]
@@ -80,8 +80,8 @@ placeholder = "Finde jetzt Blockchain-Projekte..."
 # call to action
 [Languages.en.params.cta]
 enable = true
-title = "Didn't find an answer to your question?"
-content = "Musce libero nunc, dignissim quis turpis quis, semper vehicula dolor. Suspendisse tincidunt consequat quam."
+title = "Sie haben noch Fragen zu DYOR?"
+content = "Wir haben hier ein FAQ-Bereich für euch vorbereitet. Sollten weitere Fragen offen sein, könnt Ihr uns auch gerne kontaktieren!"
 # call to action button
 [Languages.en.params.cta.button]
 enable = true
