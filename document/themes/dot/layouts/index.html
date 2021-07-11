@@ -36,6 +36,7 @@
   </section>
   {{ "<!-- /topics -->" | safeHTML }}
 
+
   {{ if .Site.Params.cta.enable }}
   {{ with .Site.Params.cta }}
   {{ "<!-- call to action -->" | safeHTML }}
@@ -46,6 +47,11 @@
           <div class="section px-3 bg-white shadow text-center">
           <h2 class="mb-4">{{ .title | markdownify }}</h2>
           <p class="mb-4">{{ .content | markdownify }}</p>
+          
+          <!--start twitter feed-->
+          
+          
+          <!--end twitter feed-->
           {{ if .button.enable }}
           {{ with .button }}
           <a href="{{ .link | relLangURL }}" class="btn btn-primary">{{ .label }}</a>

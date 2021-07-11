@@ -1,0 +1,19 @@
+<script >
+		const search = document.getElementById('search');			
+		const matchList = document.getElementById('match-list');
+
+		const searchStates = async searchText =>{
+			const res = await fetch ('/new.json');
+			const state = await res.json();
+
+			let ,atches = states.filter(state =>{
+				const regex = new RegExp('^${searchText}', 'gi');
+				return state.name.match(regex) || state.abbr.match(regex);
+			});
+
+			console.log(matches);
+		};
+
+
+		search.addEventListener('input', () => searchStates(search.value))			
+</script>

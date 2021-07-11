@@ -39,7 +39,7 @@ light_color = "#f8f9fa"
 font_family = "lato" # Choose font family from : https://fonts.google.com/
 
 # contact form action
-contact_form_action = "#" # contact form works with : https://formspree.io
+contact_form_action = "https://formspree.io/f/mwkankrk" # 
 
 
 ############################## social links ##############################
@@ -75,7 +75,7 @@ copyright = "Copyright &copy; 2021 | Website  by [Crytech Berlin](https://crytec
 title = "DO YOUR OWN RESEARCH"
 subtitle = "Finde Blockchain-Projekte und Tokens über unsere Suche."
 bg_image = "images/banner.jpg"
-placeholder = "Have a question? Just ask here or enter terms"
+placeholder = "Finde jetzt Blockchain-Projekte..."
 
 # call to action
 [Languages.en.params.cta]
@@ -98,6 +98,6 @@ weight = 1
 
 
 [[Languages.en.menu.main]]
-name = "contact"
-url = "contact"
+name = "News"
+url = "news"
 weight = 3

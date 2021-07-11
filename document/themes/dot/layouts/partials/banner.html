@@ -4,36 +4,72 @@
 		<div class="col-lg-8 text-center mx-auto">
 			<h1 class="text-white mb-3">{{ .Site.Params.banner.title | markdownify }}</h1>
 			<p class="text-white mb-4">{{ .Site.Params.banner.subtitle | markdownify }}</p>
-			<div class="position-relative">
-				<input id="search" class="form-control" placeholder="{{ .Site.Params.banner.placeholder }}">
-				<i class="ti-search search-icon"></i>
-				<!-- Javascript -->
-				{{ $currentNode := . }}
-				{{ $currentNode.Scratch.Set "pages" .Site.Pages }}
-				{{ $pages := ($currentNode.Scratch.Get "pages") }}
-				<script>
-					$(function() {
-					var projects = [
-						{{ range $pages }}
-						{
-							value: "{{ .Title }}",
-							label: "<p>{{.Plain}}</p>{{range.Params.Keywords}}<p>{{.}}</p>{{end}}",
-							url:"{{ .Permalink }}"
-						},
-						{{ end }}
-					];
-					$( "#search" ).autocomplete({
-						source: projects
-					})
-					.data( "ui-autocomplete" )._renderItem = function( ul, item ) {
-						return $( "<li>" )
-						.append( "<a href=" + item.url + " + \" &quot;\" +  >" + item.value + "</a>" + item.label )
-						.appendTo( ul );
-					};
-					});
-				</script>
+			<div class="position-relative form-wrapper">
+				<input id="search"  type="text" name="search" class="form-control" placeholder="{{ .Site.Params.banner.placeholder }}">
+				<i class="ti-search search-icon" type="submit" value="go" id="submit" onclick="searchData()"></i>
 			</div>
+			
+            
+            <ul class="list-group myList" id="div" style="background-color: white;"></ul>
+                
+            <form action="../search/list.html" method="get" id="form">
+            <input type="text" name="index" id="number"  style="display: none;">
+            </form>	
 		</div>
 	</div>
 </div>
 {{ "<!-- /banner -->" | safeHTML }}
+
+
+<script>
+	console.log("hello")
+let Data = '';
+let srch = document.getElementById('search');
+let div = document.getElementById("div")
+
+fetch('/data/jsonData.json')
+    .then(response => response.json())
+    .then(jsonResponse => {
+        Data = jsonResponse
+        //   console.log(Data);
+        srch.addEventListener("input", searchData)
+
+    })
+
+function searchData() {
+    let text = srch.value;
+    let noOfResults = 0;
+    div.innerHTML = "";
+    for (let index = 0; index < Data.length; index++) {
+        let val = Data[index];
+        let value = val.category + ' | ' + val.name + ' | ' + val.title;
+        if (value.toLowerCase().includes(text.toLowerCase()) && noOfResults < 30) {
+            div.innerHTML += `<div class="result" id='${index}' onclick='showProfile(this.id)'>${value}</div><hr>`;
+            noOfResults++;
+        } else if (noOfResults == 30) {
+            break;
+        }
+    }
+
+}
+
+function showProfile(index) {
+    div.innerHTML = '';
+    let user = Data[index];
+    let ul = document.getElementById('user');
+    ul.innerHTML = '';
+    for (const key in user) {
+        if (Object.hasOwnProperty.call(user, key)) {
+            const value = user[key];
+            ul.innerHTML += ` <div class="list-group-item"><b>${key}</b>: | ${value}</div>`;
+        }
+    }
+}
+
+
+
+</script>
+
+
+
+

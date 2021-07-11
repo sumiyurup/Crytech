@@ -1,0 +1,49 @@
+{{ define "main" }}
+
+{{ "<!-- contact -->" | safeHTML }}
+<section class="section" style="min-height: 80vh;">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="section-title text-primary"> Here is your search result</h2>
+        {{ .Content }}
+        <div class="card">
+            <div class="list-group " id="user">
+    
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ "<!-- /contact -->" | safeHTML }}
+<script>
+    fetch('/data/jsonData.json')
+        .then(response => response.json())
+        .then(jsonResponse => {
+            Data = jsonResponse
+            let quary = window.location.search;
+            let index = quary.slice(7);
+            index = Number(index);
+            showProfile(index)
+        })
+
+    function addLink(text) {
+        var urlRegex = /(https?:\/\/[^\s]+)/g;
+        return text.replace(urlRegex, function (url) {
+            return '<a href="' + url + '">' + url + '</a>';
+        })
+    }
+    function showProfile(index) {
+        let user = Data[index];
+        let ul = document.getElementById('user');
+        ul.innerHTML = '';
+        for (const key in user) {
+            if (Object.hasOwnProperty.call(user, key)) {
+                const value = user[key];
+                ul.innerHTML += ` <div class="list-group-item"><b>${key}</b>: | ${addLink(value)}</div>`;
+            }
+        }
+    }
+</script>
+{{ end }}
