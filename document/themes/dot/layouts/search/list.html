@@ -5,7 +5,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <h2 class="section-title text-primary"> Here is your search result</h2>
+        <h2 class="section-title text-primary" id="title"> </h2>
         {{ .Content }}
         <div class="card">
             <div class="list-group " id="user">
@@ -34,7 +34,7 @@
     function addLink(text) {
         var urlRegex = /(https?:\/\/[^\s]+)/g;
         return text.replace(urlRegex, function (url) {
-            return '<a href="' + url + '">' + url + '</a>';
+            return '<a target="_blank" href="' + url + '">' + url + '</a>';
         })
     }
     function showProfile(index) {
@@ -44,13 +44,13 @@
         for (const key in user) {
             if (Object.hasOwnProperty.call(user, key)) {
                 const value = user[key];
+                let title = document.getElementById('title');
+                if(key == "title"){
+                title.innerHTML = `${addLink(value)}`;
+              }
                 ul.innerHTML += ` <div class="list-group-item"><b>${key}</b>: | ${addLink(value)}</div>`;
             }
         }
     }
-
-
-
-    
-</script>
+</script>s
 {{ end }}
