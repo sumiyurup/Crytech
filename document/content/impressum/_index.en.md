@@ -1,8 +1,7 @@
 ---
-title: "Impressum"
-draft: true
+title: "impressum"
+draft: false
 ---
-
 
 Angaben gem. § 5 TMG:
 <br>
