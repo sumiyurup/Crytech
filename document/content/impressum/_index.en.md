@@ -1,5 +1,5 @@
 ---
-title: "impressum"
+title: "Impressum"
 draft: false
 ---
 
