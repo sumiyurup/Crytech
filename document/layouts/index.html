@@ -10,24 +10,24 @@
         {{ "<!-- topic-item -->" | safeHTML }}
         
         <div class="col-lg-4 col-sm-6 mb-4">
-          <a href="/" class="px-4 py-5 bg-white shadow text-center d-block match-height">
+          <a  class="px-4 py-5 bg-white shadow text-center d-block match-height">
             <i class="ti-search icon text-primary d-block mb-4"></i>
             <h3 class="mb-3 mt-0">RESEARCH</h3>
             <p class="mb-0">Mit DYOR kannst du deine eigene Research zu Projekten im Blockchain Space machen.</p>
           </a>
         </div>
         <div class="col-lg-4 col-sm-6 mb-4">
-          <a href="/" class="px-4 py-5 bg-white shadow text-center d-block match-height">
-            {{ with .Params.icon}}<i class="{{.}} icon text-primary d-block mb-4"></i>{{end}}
-            <h3 class="mb-3 mt-0">RESEARCH</h3>
-            {{with .Params.description}}<p class="mb-0">{{. | markdownify}}</p>{{end}}
+          <a  class="px-4 py-5 bg-white shadow text-center d-block match-height">
+            <i class="ti-write icon text-primary d-block mb-4"></i>
+            <h3 class="mb-3 mt-0">NEWS FEED</h3>
+            <p class="mb-0">Unsere News Feed zeigt dir aktuelle Twitter-Posts aus sicheren Quellen.</p>
           </a>
         </div>
         <div class="col-lg-4 col-sm-6 mb-4">
-          <a href="/" class="px-4 py-5 bg-white shadow text-center d-block match-height">
-            {{ with .Params.icon}}<i class="{{.}} icon text-primary d-block mb-4"></i>{{end}}
-            <h3 class="mb-3 mt-0">RESEARCH</h3>
-            {{with .Params.description}}<p class="mb-0">{{. | markdownify}}</p>{{end}}
+          <a  class="px-4 py-5 bg-white shadow text-center d-block match-height">
+            <i class="ti-star icon text-primary d-block mb-4"></i>
+            <h3 class="mb-3 mt-0">REVIEWS (soon)</h3>
+            <p class="mb-0">Ihr könnt bald Community Bewertungen der Projekte sehen und selber abgeben.</p>
           </a>
         </div>
         
@@ -35,6 +35,7 @@
     </div>
   </section>
   {{ "<!-- /topics -->" | safeHTML }}
+
 
   {{ if .Site.Params.cta.enable }}
   {{ with .Site.Params.cta }}
@@ -46,9 +47,14 @@
           <div class="section px-3 bg-white shadow text-center">
           <h2 class="mb-4">{{ .title | markdownify }}</h2>
           <p class="mb-4">{{ .content | markdownify }}</p>
+          
+          <!--start twitter feed-->
+          
+          
+          <!--end twitter feed-->
           {{ if .button.enable }}
           {{ with .button }}
-          <a href="{{ .link | relLangURL }}" class="btn btn-primary">{{ .label }}</a>
+          <a href="{{ .link | relLangURL }}" style="padding: 16px 70px; margin-right: 10px;" class="btn btn-primary">{{ .label }}</a> <a href="/contact" style="margin-left: 10px;" class="btn btn-primary">Contact</a>
           {{ end }}
           {{ end }}
           </div>
