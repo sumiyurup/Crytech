@@ -389,8 +389,16 @@ pre {
   background: var(--white-color);
 }
 
+.list-group-item{
+  border: none;
+  text-transform: capitalize;
+  padding-bottom: 20px;
+}
+
 .banner {
-  overflow: hidden;
+  overflow: visible;
+  height: 500px;
+  z-index: 999;
 }
 
 .banner p {
@@ -888,4 +896,25 @@ pre code::-webkit-scrollbar-thumb {
 
 .code-tabs .nav-tabs .nav-item.active .nav-link {
   color: var(--white-color);
+}
+
+.blue-cover{
+  color: var(--primary-color) !important;
+  padding: 10px ;
+  font-size: 22px;
+}
+
+
+.padding-left-10{
+  padding-left: 10px;
+  padding-bottom: 10px;
+  
+}
+
+#inline-display{
+  padding-bottom: 15px;
+}
+ul#inline-display li{
+  display: inline;
+  
 }

@@ -7,15 +7,46 @@
       <div class="col-12">
         <h2 class="section-title text-primary" id="title"> </h2>
         {{ .Content }}
+      </div>
+      
+      <div class="col-lg-9 col-sm-12">
         <div class="card">
-            <div class="list-group " id="user">
-    
-            </div>
+          <div class="list-group " id="user">
+          </div>
         </div>
-        
-          <a href="/" style="padding: 16px 70px; margin-top: 40px;" class="btn btn-primary"> << Back to home</a>
           
       </div>
+
+      <div class="col-lg-3 col-sm-12" >
+        <div class="card">
+          <p class="blue-cover"><b> Social</b></p>
+          <ul id="inline-display" class="social-media-links">
+            <!-- <li class="padding-left-10"><a class="twitter-link" href=""><i class="ti-twitter-alt" style="margin-right:10px;"></i></a></li>
+            <li class="padding-left-10"><a class="sharethis-link" href=""><i class="ti-sharethis" style="margin-right:10px;"></i></a></li>
+            <li class="padding-left-10"><a class="linkedin-link" href=""><i class="ti-linkedin" style="margin-right:10px;"></i></a></li>
+            <li class="padding-left-10"><a class="instagram-link" href=""><i class="ti-instagram" style="margin-right:10px;"></i></a></li> -->
+          </ul>
+        </div>
+
+        <div class="card" style="margin-top: 25px;">
+          <p class="blue-cover"><b><i class="ti-link" style="margin-right:10px;"></i> Web Sites</b></p>
+          <ul >
+            <li class="padding-left-10"><a class="website-url-link" href="">Web Site Link</a></li>
+            <li class="padding-left-10"><a class="details-url-link" href="">Details Url</a></li>
+            
+          </ul>
+        </div>
+
+        <!-- <div class="card" style="margin-top: 25px;">
+          <p class="blue-cover"><b><i class="ti-link" style="margin-right:10px;"></i> Invester Links</b></p>
+          <ul class="invester-links">
+            <li class="padding-left-10"><a href="">Link 1</a></li>
+            <li class="padding-left-10"><a href="">Link 2</a></li>
+            
+          </ul>
+        </div> -->
+      </div>
+      <a href="/" style="padding: 16px 70px; margin-top: 40px; margin-left: 10px;" class="btn btn-primary"> << Back to home</a>
     </div>
   </div>
 </section>
@@ -41,16 +72,79 @@
         let user = Data[index];
         let ul = document.getElementById('user');
         ul.innerHTML = '';
+        var socialLinksHtml  = ''
         for (const key in user) {
-            if (Object.hasOwnProperty.call(user, key)) {
+          if (Object.hasOwnProperty.call(user, key)) {
                 const value = user[key];
                 let title = document.getElementById('title');
                 if(key == "title"){
                 title.innerHTML = `${addLink(value)}`;
               }
-                ul.innerHTML += ` <div class="list-group-item"><b>${key}</b>: | ${addLink(value)}</div>`;
-            }
+                if (!key.includes('socialMediaLink') && !key.includes('website') && !key.includes('detailsUrl') && !key.includes('title')) {
+
+                  ul.innerHTML += ` <div class="list-group-item"><b>${key}</b>: | ${addLink(value)}</div>`;
+                }
+
+                // updated work
+
+                if (key == 'website') {
+                  
+                  // document.querySelector('.website-url-link').setAttribute('href', value)
+
+                } else if (key == 'detailsUrl') {
+                  
+                  // document.querySelector('.details-url-link').setAttribute('href', value)
+
+                } else if (key.includes('socialMediaLink')) {
+                  // add social links
+                  if (value.includes('twitter.com')) {
+                    
+                    socialLinksHtml += `<li class="padding-left-10"><a href="${value}"><i class="ti-twitter-alt" style="margin-right:10px;"></i></a></li>`
+
+                  } else if (value.includes('instagram.com')) {
+
+                    socialLinksHtml += `<li class="padding-left-10"><a href="${value}"><i class="ti-instagram" style="margin-right:10px;"></i></a></li>`
+
+                    
+
+                  } else if (value.includes('linkedin.com')) {
+
+                    socialLinksHtml += `<li class="padding-left-10"><a href="${value}"><i class="ti-linkedin" style="margin-right:10px;"></i></a></li>`
+
+
+                  } else if (value.includes('github.com')) {
+
+                    socialLinksHtml += `<li class="padding-left-10"><a href="${value}"><i class="ti-github" style="margin-right:10px;"></i></a></li>`
+
+                  } else if (value.includes('medium.com')) {
+
+                    socialLinksHtml += `<li class="padding-left-10"><a href="${value}"><i class="ti-medium" style="margin-right:10px;"></i></a></li>`
+
+
+                  } else if (value.includes('t.me')) {
+
+                    socialLinksHtml += `<li class="padding-left-10"><a href="${value}"><i class="ti-tumblr-alt" style="margin-right:10px;"></i></a></li>`
+                  }
+
+                } else if (key.includes('investorLink')) {
+                  var investorLinks = value.split(',')
+                  var investorLinksHtml = ''
+                  for (i in investorLinks) {
+                
+                    investorLinksHtml += `<li class="padding-left-10"><a href="${investorLinks[i]}">Link ${++i}</a></li>`
+                  }
+
+                  // document.querySelector('.invester-links').innerHTML = investorLinksHtml
+                }
+
+                
+                document.querySelector('.social-media-links').innerHTML = socialLinksHtml
+                // end work
+              }
         }
+        
     }
-</script>s
+
+    
+</script>
 {{ end }}
